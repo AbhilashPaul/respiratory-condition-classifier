@@ -1,0 +1,92 @@
+Training Dataset Size: 547
+Testing Dataset Size: 137
+Class Names: ['covid19', 'normal']
+Epoch 1/10/n
+train:   0%|          | 0/137 [00:00<?, ?it/s]
+train Loss: 0.5493 | train Accuracy: 0.7971
+val:   0%|          | 0/35 [00:00<?, ?it/s]
+val Loss: 0.2188 | val Accuracy: 0.9124
+Val loss Decreased from inf to 0.2188 
+ Saving Weights... 
+
+
+Epoch 2/10/n
+train:   0%|          | 0/137 [00:00<?, ?it/s]
+train Loss: 0.5827 | train Accuracy: 0.7806
+val:   0%|          | 0/35 [00:00<?, ?it/s]
+val Loss: 0.4592 | val Accuracy: 0.8175
+
+
+Epoch 3/10/n
+train:   0%|          | 0/137 [00:00<?, ?it/s]
+train Loss: 0.5177 | train Accuracy: 0.8044
+val:   0%|          | 0/35 [00:00<?, ?it/s]
+val Loss: 0.2899 | val Accuracy: 0.8905
+
+
+Epoch 4/10/n
+train:   0%|          | 0/137 [00:00<?, ?it/s]
+train Loss: 0.4995 | train Accuracy: 0.7989
+val:   0%|          | 0/35 [00:00<?, ?it/s]
+val Loss: 0.3302 | val Accuracy: 0.8905
+
+
+Epoch 5/10/n
+train:   0%|          | 0/137 [00:00<?, ?it/s]
+train Loss: 0.4805 | train Accuracy: 0.8007
+val:   0%|          | 0/35 [00:00<?, ?it/s]
+val Loss: 0.3571 | val Accuracy: 0.8613
+
+
+Epoch 6/10/n
+train:   0%|          | 0/137 [00:00<?, ?it/s]
+train Loss: 0.6055 | train Accuracy: 0.7642
+val:   0%|          | 0/35 [00:00<?, ?it/s]
+val Loss: 0.3811 | val Accuracy: 0.8686
+
+
+Epoch 7/10/n
+train:   0%|          | 0/137 [00:00<?, ?it/s]
+train Loss: 0.5552 | train Accuracy: 0.7879
+val:   0%|          | 0/35 [00:00<?, ?it/s]
+val Loss: 0.2039 | val Accuracy: 0.9197
+Val loss Decreased from 0.2188 to 0.2039 
+ Saving Weights... 
+
+
+Epoch 8/10/n
+train:   0%|          | 0/137 [00:00<?, ?it/s]
+train Loss: 0.5370 | train Accuracy: 0.8026
+val:   0%|          | 0/35 [00:00<?, ?it/s]
+val Loss: 0.3279 | val Accuracy: 0.8686
+
+
+Epoch 9/10/n
+train:   0%|          | 0/137 [00:00<?, ?it/s]
+train Loss: 0.4923 | train Accuracy: 0.8044
+val:   0%|          | 0/35 [00:00<?, ?it/s]
+val Loss: 0.3408 | val Accuracy: 0.8759
+
+
+Epoch 10/10/n
+train:   0%|          | 0/137 [00:00<?, ?it/s]
+train Loss: 0.5983 | train Accuracy: 0.7697
+val:   0%|          | 0/35 [00:00<?, ?it/s]
+val Loss: 0.4645 | val Accuracy: 0.8321
+
+
+Training complete in 7m 22s
+Best val loss: 0.2039
+Model saved to output/best_model.pth
+Unique classes in y_true_list: [0 1]
+Unique classes in y_pred_list: [0 1]
+Accuracy: 0.6500
+              precision    recall  f1-score   support
+
+     covid19       0.59      0.99      0.74       100
+      normal       0.97      0.31      0.47       100
+
+    accuracy                           0.65       200
+   macro avg       0.78      0.65      0.60       200
+weighted avg       0.78      0.65      0.60       200
+
