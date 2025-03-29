@@ -130,10 +130,7 @@ if __name__ == "__main__":
     torch.save(trained_model.state_dict(), saved_model_path)
     print(f"Model saved to {saved_model_path}")
 
-
-    #test_image = datasets.ImageFolder(os.path.join(data_dir, 'test'), transform=get_transforms('test'))
-    #test_dataloader = DataLoader(test_image, batch_size=1, shuffle=False)
-
+    # Evaluate model
     y_pred_list, y_true_list = evaluate_model(test_loader, class_names)
     print("Unique classes in y_true_list:", np.unique(y_true_list))
     print("Unique classes in y_pred_list:", np.unique(y_pred_list))
