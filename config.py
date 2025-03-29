@@ -1,7 +1,7 @@
 import torch
 # Data loading
 saved_model_path = "output/best_model.pth"
-data_dir = "covid19_dataset"
+data_dir = "xray_dataset"
 
 IMAGE_SIZE = (224, 224)
 NORMALIZATION_MEAN = [0.485, 0.456, 0.406]
