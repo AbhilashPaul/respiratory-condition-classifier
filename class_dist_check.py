@@ -42,32 +42,22 @@ def check_class_distribution(train_loader, val_loader, test_loader, class_names)
     # Visualize distributions
     fig, ax = plt.subplots(1, 3, figsize=(18, 5))
 
-    # Helper function to add values above bars
-    def add_values_above_bars(ax, counts):
-        for i, count in enumerate(counts.values()):
-            ax.text(i, count + 50, str(count), ha='center', va='bottom', fontsize=10)
-
-    # Training set distribution
     ax[0].bar(train_counts.keys(), train_counts.values(), color='green', tick_label=[class_names[key] for key in train_counts.keys()])
     ax[0].set_title("Training Set Class Distribution")
     ax[0].set_xlabel("Class")
     ax[0].set_ylabel("Count")
-    add_values_above_bars(ax[0], train_counts)
 
-    # Validation set distribution
     ax[1].bar(val_counts.keys(), val_counts.values(), color='orange', tick_label=[class_names[key] for key in val_counts.keys()])
     ax[1].set_title("Validation Set Class Distribution")
     ax[1].set_xlabel("Class")
     ax[1].set_ylabel("Count")
-    add_values_above_bars(ax[1], val_counts)
 
-    # Test set distribution
     ax[2].bar(test_counts.keys(), test_counts.values(), color='blue', tick_label=[class_names[key] for key in test_counts.keys()])
     ax[2].set_title("Test Set Class Distribution")
     ax[2].set_xlabel("Class")
     ax[2].set_ylabel("Count")
-    add_values_above_bars(ax[2], test_counts)
 
-    plt.tight_layout()
+    plt.tight_layout(pad=3.0)
+
     plt.savefig('class_distribution.png', bbox_inches='tight')
     plt.show()
