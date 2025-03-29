@@ -3,21 +3,36 @@ import torch
 import time
 import copy
 import tqdm.notebook as tqdm
-from sklearn.metrics import cohen_kappa_score
-
 from config import DEVICE
 
 def train_model(model, criterion, optimizer, scheduler, dataloaders, data_sizes, num_epochs=10):
-    since = time.time()
+    """
+    Trains a model and logs training/validation loss, accuracy, and learning rate.
 
+    Args:
+        model: The PyTorch model to train.
+        criterion: Loss function.
+        optimizer: Optimizer for training.
+        scheduler: Learning rate scheduler.
+        dataloaders (dict): Dictionary containing 'train' and 'val' DataLoaders.
+        data_sizes (dict): Dictionary containing sizes of 'train' and 'val' datasets.
+        num_epochs (int): Number of epochs to train.
+
+    Returns:
+        model: The trained model with the best weights loaded.
+    """
+    since = time.time()
     best_model_wts = copy.deepcopy(model.state_dict())
     best_loss = np.inf
 
     for epoch in range(num_epochs):
-        print('Epoch {}/{}/n'.format(epoch+1, num_epochs))
-
+        print(f'Epoch {epoch+1}/{num_epochs}\n')
+        
         for phase in ['train', 'val']:
-            model.train() if phase == "train" else model.eval()
+            if phase == 'train':
+                model.train()
+            else:
+                model.eval()
 
             current_loss = 0.0
             current_corrects = 0
@@ -33,36 +48,38 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, data_sizes,
                     _, preds = torch.max(outputs, 1)
                     loss = criterion(outputs, labels)
 
-                    # backward + optimize only if in training phase
                     if phase == 'train':
                         loss.backward()
                         optimizer.step()
-                if phase == 'train':
-                    scheduler.step()
 
-                # We want variables to hold the loss statistics
                 current_loss += loss.item() * inputs.size(0)
                 current_corrects += torch.sum(preds == labels.data)
 
             epoch_loss = current_loss / data_sizes[phase]
             epoch_acc = current_corrects.double() / data_sizes[phase]
-            if phase == 'val':
-                print('{} Loss: {:.4f} | {} Accuracy: {:.4f}'.format(phase, epoch_loss, phase, epoch_acc))
-            else:
-                print('{} Loss: {:.4f} | {} Accuracy: {:.4f}'.format(phase, epoch_loss, phase, epoch_acc))
 
-            # EARLY STOPPING
-            if phase == 'val' and epoch_loss < best_loss:
-                print('Val loss Decreased from {:.4f} to {:.4f} \n Saving Weights... '.format(best_loss, epoch_loss))
-                best_loss = epoch_loss
-                best_model_wts = copy.deepcopy(model.state_dict())
+            print(f'{phase} Loss: {epoch_loss:.4f} | {phase} Accuracy: {epoch_acc:.4f}')
+
+            # Log learning rate during training phase
+            if phase == 'train':
+                current_lr = scheduler.get_last_lr()[0]  # Get the current learning rate
+                print(f"Learning Rate: {current_lr:.6f}")
+
+            # Update scheduler based on validation loss
+            if phase == 'val':
+                scheduler.step(epoch_loss)  # Adjust learning rate based on validation loss
+
+                if epoch_loss < best_loss:
+                    print(f'Validation loss decreased from {best_loss:.4f} to {epoch_loss:.4f}. Saving model...')
+                    best_loss = epoch_loss
+                    best_model_wts = copy.deepcopy(model.state_dict())
 
         print('\n')
 
-    time_since = time.time() - since
-    print('Training complete in {:.0f}m {:.0f}s'.format(time_since // 60, time_since % 60))
-    print('Best val loss: {:.4f}'.format(best_loss))
+    time_elapsed = time.time() - since
+    print(f'Training complete in {time_elapsed // 60:.0f}m {time_elapsed % 60:.0f}s')
+    print(f'Best val loss: {best_loss:.4f}')
 
-    # Load the best model weights and return it
+    # Load best model weights
     model.load_state_dict(best_model_wts)
     return model
