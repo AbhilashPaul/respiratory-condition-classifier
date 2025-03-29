@@ -1,9 +1,31 @@
-import numpy as np
 import torch
 import time
 import copy
 import tqdm.notebook as tqdm
 from config import DEVICE
+from collections import Counter
+
+def compute_class_weights(dataloader, num_classes):
+    """
+    Computes class weights based on the class distribution in a DataLoader.
+
+    Args:
+        dataloader (DataLoader): PyTorch DataLoader containing dataset batches.
+        num_classes (int): Number of classes in the dataset.
+
+    Returns:
+        torch.Tensor: Class weights tensor.
+    """
+    # Count occurrences of each class in the dataloader
+    class_counts = Counter()
+    for _, labels in dataloader:
+        class_counts.update(labels.tolist())
+    
+    # Compute total samples and class weights
+    total_samples = sum(class_counts.values())
+    class_weights = [total_samples / (num_classes * class_counts[i]) for i in range(num_classes)]
+    
+    return torch.tensor(class_weights, dtype=torch.float)
 
 def train_model(model, criterion, optimizer, scheduler, dataloaders, data_sizes, num_epochs=10):
     """
@@ -23,7 +45,16 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, data_sizes,
     """
     since = time.time()
     best_model_wts = copy.deepcopy(model.state_dict())
-    best_loss = np.inf
+    best_loss = float("inf")
+
+    # Compute class weights from training data
+    num_classes = len(dataloaders["train"].dataset.dataset.classes)  # Get number of classes
+    class_weights = compute_class_weights(dataloaders["train"], num_classes)
+    print(f"Class Weights: {class_weights}")
+    
+    # Move class weights to device and update criterion
+    class_weights = class_weights.to(DEVICE)
+    criterion.weight = class_weights
 
     for epoch in range(num_epochs):
         print(f'Epoch {epoch+1}/{num_epochs}\n')
