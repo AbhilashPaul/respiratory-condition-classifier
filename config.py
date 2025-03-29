@@ -5,4 +5,4 @@ BATCH_SIZE = 16
 NUM_EPOCHS = 20
 
 saved_model_path = "output/best_model.pth"
-data_dir = "covid19_dataset"
+data_dir = "xray_dataset"
