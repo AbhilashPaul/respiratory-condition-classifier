@@ -34,16 +34,14 @@ def load_and_split_dataset(data_dir, train_split=0.7, val_split=0.2, batch_size=
     # Load the full dataset with training transformations initially
     full_dataset = datasets.ImageFolder(root=data_dir, transform=get_transforms("train"))
 
-    # Extract labels for stratified splitting
-    labels = [sample[1] for sample in full_dataset.samples]  # Get class labels
-
-    # Calculate split sizes
+    # train/val/test split using StratifiedShuffleSplit
     train_size = int(train_split * len(full_dataset))
     val_size = int(val_split * len(full_dataset))
     test_size = len(full_dataset) - train_size - val_size
 
-    # Initialize StratifiedShuffleSplit for train/val split
     stratified_split = StratifiedShuffleSplit(n_splits=1, test_size=val_size + test_size, random_state=42)
+
+    labels = [sample[1] for sample in full_dataset.samples]
 
     for train_idx, temp_idx in stratified_split.split(full_dataset.samples, labels):
         train_dataset = Subset(full_dataset, train_idx)
@@ -94,10 +92,10 @@ if __name__ == "__main__":
     print("Training Dataset Size:", train_size)
     print("Validation Dataset Size:", val_size)
     print("Testing Dataset Size:", test_size)
-    dataloaders = {"train":train_loader, "val":val_loader}
-    data_sizes = {"train": train_size, "val": val_size}
     class_names = list(class_to_idx.keys())
     print("Class Names:", class_names)
+    dataloaders = {"train":train_loader, "val":val_loader}
+    data_sizes = {"train": train_size, "val": val_size}
 
     check_class_distribution(train_loader, val_loader, test_loader, class_names)
 
@@ -106,7 +104,7 @@ if __name__ == "__main__":
     #print("Model Summary:")
     #print(model)
 
-    # specify loss function (categorical cross-entropy loss)
+    # specify loss function. Class weight will be adjusted during training
     criterion = nn.CrossEntropyLoss() 
 
     # Specify optimizer

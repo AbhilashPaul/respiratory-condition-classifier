@@ -6,7 +6,7 @@ from model import get_model
 def evaluate_model(test_dataloader, class_names):
     model = get_model(class_names)
     # Load the saved weights
-    model.load_state_dict(torch.load(saved_model_path))
+    model.load_state_dict(torch.load(saved_model_path, weights_only=True))
 
     model = model.to(DEVICE)
 
@@ -14,7 +14,8 @@ def evaluate_model(test_dataloader, class_names):
     predictions, true_labels = [], []
 
     with torch.no_grad():
-        for inputs, labels in tqdm.tqdm(test_dataloader, desc='test', leave=False):
+        with tqdm.tqdm(test_dataloader, desc='test', leave=False) as pbar:
+            for inputs, labels in pbar:
                 inputs = inputs.to(DEVICE)
                 labels = labels.to(DEVICE)
 
