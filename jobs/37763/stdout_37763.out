@@ -1,0 +1,227 @@
+Training Dataset Size: 10607
+Validation Dataset Size: 3030
+Testing Dataset Size: 1516
+Class Names: ['covid19', 'normal', 'viral pneumonia']
+Training Set Class Distribution:
+normal: 7134
+viral pneumonia: 942
+covid19: 2531
+
+Validation Set Class Distribution:
+viral pneumonia: 269
+normal: 2038
+covid19: 723
+
+Test Set Class Distribution:
+normal: 1020
+covid19: 362
+viral pneumonia: 134
+Class Weights: tensor([1.3969, 0.4956, 3.7534])
+Epoch 1/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.4721 | train Accuracy: 0.7808
+Learning Rate: 0.001000
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.4112 | val Accuracy: 0.7624
+Validation loss decreased from inf to 0.4112. Saving model...
+
+
+Epoch 2/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.3288 | train Accuracy: 0.8500
+Learning Rate: 0.001000
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.5687 | val Accuracy: 0.6330
+
+
+Epoch 3/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.2457 | train Accuracy: 0.8954
+Learning Rate: 0.001000
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.1964 | val Accuracy: 0.8855
+Validation loss decreased from 0.4112 to 0.1964. Saving model...
+
+
+Epoch 4/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.2184 | train Accuracy: 0.9025
+Learning Rate: 0.001000
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.2045 | val Accuracy: 0.9446
+
+
+Epoch 5/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.1966 | train Accuracy: 0.9165
+Learning Rate: 0.001000
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.1647 | val Accuracy: 0.9521
+Validation loss decreased from 0.1964 to 0.1647. Saving model...
+
+
+Epoch 6/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.1929 | train Accuracy: 0.9180
+Learning Rate: 0.001000
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.1567 | val Accuracy: 0.9300
+Validation loss decreased from 0.1647 to 0.1567. Saving model...
+
+
+Epoch 7/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.1806 | train Accuracy: 0.9242
+Learning Rate: 0.001000
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.1633 | val Accuracy: 0.9165
+
+
+Epoch 8/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.1642 | train Accuracy: 0.9288
+Learning Rate: 0.001000
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.0924 | val Accuracy: 0.9637
+Validation loss decreased from 0.1567 to 0.0924. Saving model...
+
+
+Epoch 9/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.1567 | train Accuracy: 0.9299
+Learning Rate: 0.001000
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.1000 | val Accuracy: 0.9545
+
+
+Epoch 10/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.1555 | train Accuracy: 0.9352
+Learning Rate: 0.001000
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.1208 | val Accuracy: 0.9531
+
+
+Epoch 11/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.1325 | train Accuracy: 0.9430
+Learning Rate: 0.001000
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.1338 | val Accuracy: 0.9465
+
+
+Epoch 12/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.0817 | train Accuracy: 0.9659
+Learning Rate: 0.000100
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.0675 | val Accuracy: 0.9733
+Validation loss decreased from 0.0924 to 0.0675. Saving model...
+
+
+Epoch 13/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.0645 | train Accuracy: 0.9703
+Learning Rate: 0.000100
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.0604 | val Accuracy: 0.9772
+Validation loss decreased from 0.0675 to 0.0604. Saving model...
+
+
+Epoch 14/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.0618 | train Accuracy: 0.9738
+Learning Rate: 0.000100
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.0600 | val Accuracy: 0.9825
+Validation loss decreased from 0.0604 to 0.0600. Saving model...
+
+
+Epoch 15/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.0521 | train Accuracy: 0.9775
+Learning Rate: 0.000100
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.0558 | val Accuracy: 0.9818
+Validation loss decreased from 0.0600 to 0.0558. Saving model...
+
+
+Epoch 16/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.0519 | train Accuracy: 0.9769
+Learning Rate: 0.000100
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.0545 | val Accuracy: 0.9802
+Validation loss decreased from 0.0558 to 0.0545. Saving model...
+
+
+Epoch 17/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.0490 | train Accuracy: 0.9784
+Learning Rate: 0.000100
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.0524 | val Accuracy: 0.9802
+Validation loss decreased from 0.0545 to 0.0524. Saving model...
+
+
+Epoch 18/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.0421 | train Accuracy: 0.9810
+Learning Rate: 0.000100
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.0551 | val Accuracy: 0.9799
+
+
+Epoch 19/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.0396 | train Accuracy: 0.9819
+Learning Rate: 0.000100
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.0517 | val Accuracy: 0.9835
+Validation loss decreased from 0.0524 to 0.0517. Saving model...
+
+
+Epoch 20/20
+
+train:   0%|          | 0/663 [00:00<?, ?it/s]
+train Loss: 0.0371 | train Accuracy: 0.9849
+Learning Rate: 0.000100
+val:   0%|          | 0/190 [00:00<?, ?it/s]
+val Loss: 0.0588 | val Accuracy: 0.9818
+
+
+Training complete in 124m 37s
+Best val loss: 0.0517
+Model saved to output/best_model.pth
+Unique classes in y_true_list: [0 1 2]
+Unique classes in y_pred_list: [0 1 2]
+Accuracy: 0.9730
+                 precision    recall  f1-score   support
+
+        covid19       0.95      0.97      0.96       362
+         normal       0.99      0.97      0.98      1020
+viral pneumonia       0.94      0.97      0.95       134
+
+       accuracy                           0.97      1516
+      macro avg       0.96      0.97      0.96      1516
+   weighted avg       0.97      0.97      0.97      1516
+
