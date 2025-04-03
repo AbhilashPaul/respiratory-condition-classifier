@@ -31,5 +31,27 @@ class LightEfficientNetV2(nn.Module):
     def forward(self, x):
         return self.model(x)
 
+class VGG16Model(nn.Module):
+    def __init__(self, class_names):
+        super(VGG16Model, self).__init__()
+        
+        # Load pre-trained VGG16 with updated weights parameter
+        self.model = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
+        
+        # Freeze feature extraction layers
+        for param in self.model.features.parameters():
+            param.requires_grad = False
+        
+        # Replace classifier while preserving original structure
+        in_features = self.model.classifier[6].in_features  # 4096 features from last FC layer
+        self.model.classifier[6] = nn.Sequential(
+            nn.Dropout(p=0.5),  # Keep original dropout rate
+            nn.Linear(in_features, len(class_names))
+        )
+
+    def forward(self, x):
+        return self.model(x)
+    
+
 def get_model(class_names):
-    return LightEfficientNetV2(class_names)
+    return VGG16Model(class_names)
